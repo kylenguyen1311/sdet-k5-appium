@@ -1,0 +1,14 @@
+[{
+  "username": "kyle",
+  "password": "123456",
+  "job": {
+    "position": "SWE lv2"
+  }
+},
+{
+  "username": "kyle@gmail.com",
+  "password": "",
+  "job": {
+    "position": "QAE lv1"
+  }
+}]

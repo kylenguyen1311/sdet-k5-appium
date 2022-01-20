@@ -1,6 +1,7 @@
 package driver;
 
 import caps.MobileCapabilityTypeEx;
+import flags.AndroidServerFlagEx;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
@@ -17,17 +18,19 @@ public class DriverFactory {
 
     public static void startAppiumServer() {
         AppiumServiceBuilder appiumServiceBuilder = new AppiumServiceBuilder();
+        appiumServiceBuilder.withArgument(AndroidServerFlagEx.ALLOW_INSECURE, "chromedriver_autodownload");
         appiumServiceBuilder.withIPAddress("127.0.0.1").usingAnyFreePort();
 //        appiumServiceBuilder.withIPAddress("127.0.0.1").usingPort(4723);
         appiumServer = AppiumDriverLocalService.buildService(appiumServiceBuilder);
         appiumServer.start();
+
     }
 
     public static void stopAppiumServer() {
 //        appiumServer.stop();
         String killNodeWindowsCommand = "taskkill /F /IM node.exe";
         String killNodeLinuxCommand = "killall node";
-        String killNodeCmd = System.getProperty("os.name").toLowerCase().startsWith("Windows")
+        String killNodeCmd = System.getProperty("os.name").toLowerCase().startsWith("Mac OS X")
                 ? killNodeLinuxCommand : killNodeLinuxCommand;
         Runtime runtime = Runtime.getRuntime();
         try {
@@ -46,7 +49,8 @@ public class DriverFactory {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability(MobileCapabilityTypeEx.PLATFORM_NAME, "android");
         desiredCapabilities.setCapability(MobileCapabilityTypeEx.AUTOMATION_NAME, "uiautomator2");
-        desiredCapabilities.setCapability(MobileCapabilityTypeEx.UDID, "emulator-5554");
+//        desiredCapabilities.setCapability(MobileCapabilityTypeEx.UDID, "emulator-5554");
+        desiredCapabilities.setCapability(MobileCapabilityTypeEx.UDID, "K5J0220B20000128");
         desiredCapabilities.setCapability(MobileCapabilityTypeEx.APP_PACKAGE, "com.wdiodemoapp");
         desiredCapabilities.setCapability(MobileCapabilityTypeEx.APP_ACTIVITY, "com.wdiodemoapp.MainActivity");
 

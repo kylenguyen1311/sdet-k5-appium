@@ -4,8 +4,6 @@ import driver.DriverFactory;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
-import java.sql.Driver;
-
 public class FormHandling {
     public static void main(String[] args) {
         DriverFactory.startAppiumServer();
